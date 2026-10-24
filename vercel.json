@@ -1,4 +1,12 @@
 {
-  "source": "/api/:path*",
-  "destination": "https://startup-graveyard-bd-api.onrender.com/api/:path*"
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://startup-graveyard-bd-api.onrender.com/api/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
 }
