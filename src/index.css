@@ -1,0 +1,213 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/bricolage-grotesque';
+@import '@fontsource-variable/jetbrains-mono';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Neutral palette + one accent (#006A4E). Tokens switch with the .dark class on <html>. */
+:root {
+  --bg: #f6f5f2;
+  --surface: #ffffff;
+  --surface-2: #efede8;
+  --border: #e2dfd8;
+  --border-strong: #cbc7bd;
+  --text: #1c1b18;
+  --muted: #6b675e;
+  --faint: #9a958a;
+  --accent: #006a4e;
+  --accent-hover: #00563f;
+  --accent-soft: #e3f0eb;
+  --accent-text: #005a42;
+  --on-accent: #ffffff;
+  --danger: #b42318;
+  --danger-soft: #fdecea;
+  --warning: #8a5a00;
+  --warning-soft: #fdf3dc;
+  --focus: #00a676;
+  /* Chart series color: a validated step of the accent hue (chroma floor + 3:1 vs surface). */
+  --chart-1: #007a58;
+  --chart-grid: #ebe8e2;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #121311;
+  --surface: #1a1b19;
+  --surface-2: #232421;
+  --border: #2f302c;
+  --border-strong: #42443e;
+  --text: #ecebe6;
+  --muted: #a6a39a;
+  --faint: #75736b;
+  --accent: #2e9e7a;
+  --accent-hover: #3bb38c;
+  --accent-soft: #16302a;
+  --accent-text: #6fd1ad;
+  --on-accent: #07140f;
+  --danger: #f2877c;
+  --danger-soft: #3a1a17;
+  --warning: #e8b85a;
+  --warning-soft: #33280f;
+  --focus: #4fd1a5;
+  --chart-1: #2e9e7a;
+  --chart-grid: #2a2b28;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --font-sans: 'Bricolage Grotesque Variable', sans-serif;
+  --font-mono: 'JetBrains Mono Variable', monospace;
+
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+  --color-ink: var(--text);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-text: var(--accent-text);
+  --color-on-accent: var(--on-accent);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    min-height: 100vh;
+    background: var(--bg);
+  }
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  ::selection {
+    background: color-mix(in srgb, var(--accent) 25%, transparent);
+  }
+}
+
+@layer components {
+  .input {
+    @apply w-full rounded-md border border-line bg-surface px-3 py-2 text-sm text-ink placeholder:text-faint transition-colors;
+    @apply hover:border-line-strong focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/25;
+  }
+  .input[aria-invalid='true'] {
+    @apply border-danger focus:ring-danger/25;
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-ink;
+  }
+  .hint {
+    @apply mt-1 text-xs text-muted;
+  }
+  .field-error {
+    @apply mt-1 text-xs text-danger;
+  }
+  .card {
+    @apply rounded-lg border border-line bg-surface;
+  }
+  .num {
+    @apply font-mono tabular-nums;
+  }
+}
+
+/* ── Markdown editor: match the app palette and fonts ── */
+.w-md-editor {
+  --color-canvas-default: var(--surface);
+  --color-canvas-subtle: var(--surface-2);
+  --color-border-default: var(--border);
+  --color-border-muted: var(--border);
+  --color-fg-default: var(--text);
+  --color-fg-muted: var(--muted);
+  --color-accent-fg: var(--accent-text);
+  --md-editor-background-color: var(--surface);
+  --md-editor-box-shadow-color: var(--border);
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 0 0 1px var(--border) !important;
+}
+.w-md-editor:focus-within {
+  box-shadow: 0 0 0 1px var(--accent), 0 0 0 4px color-mix(in srgb, var(--accent) 25%, transparent) !important;
+}
+.w-md-editor-toolbar {
+  background: var(--surface-2) !important;
+  border-bottom-color: var(--border) !important;
+  border-radius: 8px 8px 0 0 !important;
+}
+/* The editor's own CSS loads later (lazy chunk) and sets Helvetica via this variable, so
+   override the variable with a more specific selector. Input and highlight layers must
+   share one monospace font so the caret stays aligned. */
+html .w-md-editor {
+  --md-editor-font-family: var(--font-mono);
+  font-family: var(--font-sans);
+}
+html .w-md-editor .w-md-editor-text-pre > code,
+html .w-md-editor .w-md-editor-text-input,
+html .w-md-editor .w-md-editor-text {
+  font-family: var(--font-mono) !important;
+  font-size: 14px !important;
+  line-height: 1.7 !important;
+}
+
+/* Rendered Markdown (preview + full-article preview); the library defaults to system fonts. */
+html .wmde-markdown,
+html .prose-md {
+  font-family: var(--font-sans) !important;
+  background: transparent !important;
+  color: var(--text) !important;
+  font-size: 16px;
+  line-height: 1.7;
+}
+.wmde-markdown a {
+  color: var(--accent-text) !important;
+}
+.wmde-markdown blockquote {
+  color: var(--muted) !important;
+  border-left-color: var(--border-strong) !important;
+}
+html .wmde-markdown code,
+html .wmde-markdown pre,
+html .wmde-markdown kbd,
+html .wmde-markdown samp,
+html .wmde-markdown tt {
+  font-family: var(--font-mono) !important;
+}
+
+/* ── Skeleton shimmer ── */
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface-2);
+  border-radius: 6px;
+}
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--surface) 60%, transparent), transparent);
+  animation: shimmer 1.4s infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .skeleton::after {
+    animation: none;
+  }
+}
