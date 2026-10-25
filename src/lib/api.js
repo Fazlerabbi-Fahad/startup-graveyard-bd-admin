@@ -18,7 +18,8 @@ export class ApiError extends Error {
  * which the auth provider turns into a redirect to /login.
  */
 export async function api(path, { method = 'GET', body, query, signal, silent401 = false } = {}) {
-  const url = new URL(API_URL + path);
+  // API_URL may be absolute (local dev) or relative ("/api", proxied by vercel.json in production).
+  const url = new URL(API_URL + path, window.location.origin);
   if (query) {
     for (const [k, v] of Object.entries(query)) {
       if (v !== undefined && v !== null && v !== '') url.searchParams.set(k, v);

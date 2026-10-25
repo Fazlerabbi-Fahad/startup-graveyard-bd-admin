@@ -76,8 +76,8 @@ The admin is a static single-page app: build it and serve `dist/`, with every pa
 
 1. *Add New → Project* and import the repo.
 2. **Root Directory:** `bdgy-admin`. The framework is detected as **Vite**: build `npm run build`, output `dist`.
-3. Under *Environment Variables*, add `VITE_API_URL` (e.g. `https://api.example.com/api`) and `VITE_WEB_URL`.
-4. `vercel.json` (already included) rewrites every path to `index.html`, so deep links like `/case-studies/123/edit` work.
+3. Under *Environment Variables*, set `VITE_API_URL=/api` and `VITE_WEB_URL`.
+4. `vercel.json` proxies `/api/*` to the API (edit its `destination` to your API host) and rewrites every other path to `index.html`, so deep links like `/case-studies/123/edit` work. Because the browser only talks to the admin's own domain, the login cookie is first-party, and works even on `*.vercel.app` with third-party cookies blocked. If you point `VITE_API_URL` straight at the API's domain instead, login returns 200 but every later request is 401, because the browser drops the cookie.
 5. Deploy, then attach your domain (e.g. `admin.example.com`) under *Settings → Domains*.
 6. Set `ADMIN_ORIGIN=https://admin.example.com` on the API and redeploy the API.
 
