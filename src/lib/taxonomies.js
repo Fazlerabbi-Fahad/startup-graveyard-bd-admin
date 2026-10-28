@@ -19,9 +19,11 @@ export const FALLBACK_TAXONOMIES = {
     'Distribution and marketing',
     'Product quality and momentum',
     'Ownership and team continuity',
+    'Customer trust',
+    'Cash flow / funding model',
     'Other',
   ],
-  outcomes: ['Shut down', 'Acquired', 'Dormant', 'Pivoted'],
+  outcomes: ['Shut down', 'Acquired', 'Dormant', 'Pivoted', 'Defunct'],
 };
 
 export const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
