@@ -26,12 +26,10 @@ export function computeReadiness(v) {
     { key: 'sections.executiveSummary', label: 'Executive summary', step: 'summary', ok: filled(sec.executiveSummary) },
     { key: 'sections.whatWentWrong', label: 'What went wrong analysis', step: 'wrong', ok: filled(sec.whatWentWrong) },
     { key: 'failureReasons', label: 'At least one failure reason', step: 'wrong', ok: reasons.length > 0 },
-    { key: 'lessons', label: 'At least one lesson', step: 'lessons', ok: lessons.length > 0 },
     { key: 'sources', label: 'At least one source', step: 'research', ok: sources.length > 0 },
   ];
 
   const recommended = [
-    { key: 'cover', label: 'Cover image', step: 'basics', ok: filled(v.coverImageUrl) },
     { key: 'glance', label: 'Sector, city and outcome', step: 'glance', ok: filled(g.sector) && filled(g.city) && filled(g.outcome) },
     { key: 'years', label: 'Founded and shut-down years', step: 'glance', ok: filled(g.foundedYear) && filled(g.shutDownYear) },
     { key: 'background', label: 'Company background', step: 'background', ok: filled(sec.companyBackground) },

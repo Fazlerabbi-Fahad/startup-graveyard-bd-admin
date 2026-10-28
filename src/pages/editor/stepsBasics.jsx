@@ -54,8 +54,8 @@ export function StepBasics({ autoSlug, onSlugEdited, isPublished, savedSlug }) {
       <TextField name="tagline" label="Tagline" hint="One sentence: what it did. Shown under the name and in listings." autoComplete="off" />
 
       <div className="grid gap-6 border-t border-line pt-6">
-        <ImageUploadField name="logoUrl" label="Logo" aspect="aspect-square" fit="object-contain p-3" hint="Square works best. JPG, PNG or WebP up to 5 MB." />
-        <ImageUploadField name="coverImageUrl" label="Cover image" hint="Wide image shown at the top of the article. 1600×900 or larger." />
+        <ImageUploadField name="logoUrl" label="Logo" aspect="aspect-square" fit="object-contain p-3" hint="Optional. Square works best. JPG, PNG or WebP up to 5 MB." />
+        <ImageUploadField name="coverImageUrl" label="Cover image" hint="Optional. Wide image shown at the top of the article. 1600×900 or larger." />
       </div>
     </div>
   );
