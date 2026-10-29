@@ -1,6 +1,6 @@
 // Used until GET /public/taxonomies responds (and if it fails). The API is the source of truth.
 export const FALLBACK_TAXONOMIES = {
-  sectors: ['Fintech', 'eCommerce', 'Logistics', 'Mobility', 'Edtech', 'Healthtech', 'Foodtech', 'Agritech', 'SaaS', 'Media', 'Internet search', 'Online classifieds', 'Travel', 'Proptech', 'Other'],
+  sectors: ['Fintech', 'eCommerce', 'Logistics', 'Mobility', 'Edtech', 'Healthtech', 'Foodtech', 'Agritech', 'SaaS', 'Media', 'Internet search', 'Online classifieds', 'Food Delivery', 'Travel', 'Proptech', 'Other'],
   cities: ['Dhaka', 'Chattogram', 'Sylhet', 'Khulna', 'Rajshahi', 'Other'],
   failureCategories: [
     'No product-market fit',
