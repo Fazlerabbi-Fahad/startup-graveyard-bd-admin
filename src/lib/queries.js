@@ -10,6 +10,7 @@ export const keys = {
   analytics: (range) => ['analytics', range],
   counts: ['counts'],
   corrections: (params) => ['corrections', params],
+  messages: (params) => ['messages', params],
 };
 
 export function useTaxonomies() {

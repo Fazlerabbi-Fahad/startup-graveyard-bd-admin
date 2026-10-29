@@ -17,6 +17,7 @@ const Dashboard = lazy(() => import('./pages/Dashboard.jsx'));
 const CaseStudiesList = lazy(() => import('./pages/CaseStudiesList.jsx'));
 const CaseStudyEditor = lazy(() => import('./pages/editor/CaseStudyEditor.jsx'));
 const Corrections = lazy(() => import('./pages/Corrections.jsx'));
+const Messages = lazy(() => import('./pages/Messages.jsx'));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -56,6 +57,7 @@ const router = createBrowserRouter([
           { path: 'case-studies/:id/edit', element: <CaseStudyEditor /> },
           { path: 'case-studies/by-slug/:slug', element: <ResolveSlug /> },
           { path: 'corrections', element: <Corrections /> },
+          { path: 'messages', element: <Messages /> },
           { path: 'dashboard', element: <Navigate to="/" replace /> },
           { path: '*', element: <NotFound /> },
         ],

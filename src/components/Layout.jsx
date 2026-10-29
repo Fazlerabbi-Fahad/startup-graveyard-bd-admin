@@ -11,6 +11,7 @@ const NAV = [
   { to: '/case-studies', label: 'Case Studies', icon: 'list', end: true },
   { to: '/case-studies/new', label: 'New Case Study', icon: 'plus' },
   { to: '/corrections', label: 'Corrections', icon: 'inbox', badge: 'corrections' },
+  { to: '/messages', label: 'Messages', icon: 'inbox' },
 ];
 
 const THEMES = [
